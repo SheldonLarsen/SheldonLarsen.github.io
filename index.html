@@ -7,41 +7,32 @@
 <body>
 <p>Click the button to get your coordinates.</p>
 
-<button id="button">Try It</button>
+<button id="locationBtn">Get Location</button>
 
-<p id="demo"></p>
-<p id="status"></p>
+<p id="locationDisplay">Latitude: <br>Longitude: <br>Accuracy:</p>
+
 </body>
 </html>
 
 <script>
-    var x = document.getElementById("demo");
-    var button = document.getElementById("button");
-    var runStatus = document.getElementById("status");
-
+    var locationDisplay = document.getElementById("locationDisplay");
+    var locationButton = document.getElementById("locationBtn");
 
     function getLocation() {
-        runStatus.innerHTML = "get Location";
         if (navigator.geolocation) {
-            runStatus.innerHTML = "has navigator";
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
-            runStatus.innerHTML = "not supported";
-            x.innerHTML = "Geolocation is not supported by this browser.";
+            navigator.innerHTML = "Could not find Navigator";
         }
     }
 
     function showPosition(position) {
-        runStatus.innerHTML = "show position";
-        x.innerHTML = "Latitude: " + position.coords.latitude +
+        locationDisplay.innerHTML = "Latitude: " + position.coords.latitude +
             "<br>Longitude: " + position.coords.longitude +
             "<br>Accuracy: " + position.coords.accuracy
     }
 
-    button.addEventListener('click', function () {
+    locationButton.addEventListener('click', function () {
         getLocation()
     })
-
-    runStatus.innerHTML = "First Run"
-    getLocation()
 </script>
